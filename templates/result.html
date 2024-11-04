@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BERT Sentiment Analysis Result</title>
+</head>
+<body>
+    <!-- Add an id to the result display element -->
+    <div id="result"></div>
+
+    <style>
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+        }
+    </style>
+
+    <script>
+        function generateProduct() {
+            var element = document.getElementById('textbox');
+            element.classList.toggle('active');
+
+            // Get the product name from the form
+            var productName = document.getElementById("productName").value;
+
+            // Send a POST request to the server
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: new URLSearchParams({
+                    'productName': productName,
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the results
+                var resultElement = document.getElementById('result');
+                resultElement.innerHTML = `
+                    <p>Predicted Sentiment: ${data.predicted_label}</p>
+                    <p>Sentiment Probabilities: ${JSON.stringify(data.probabilities)}</p>
+                `;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error occurred. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root
+{
+  --box-shadow: 0 .5rem 1.5rem rgba(0,0,0.1);
+  --input-color: #99A3BA;
+  --input-border: #CDD9ED;
+  --input-background: #fff;
+  --input-placeholder: #CBD1DC;
+  --input-border-focus: #275EFE;
+  --group-color: var(--input-color);
+  --group-border: var(--input-border);
+  --group-background: #EEF4FF;
+  --group-color-focus: #fff;
+  --group-border-focus: var(--input-border-focus);
+  --group-background-focus: #678EFE;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Georgia', sans-serif;
+  text-decoration: none;
+}
+body{
+  min-height: 100vh;
+  background: url('https://wallpaperaccess.com/full/1799643.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+section
+{
+  padding: 2rem 9%;
+
+}
+.heading
+{
+  text-align: center;
+  padding: 2rem 0;
+  padding-bottom: 3rem;
+  font-size: 3.5rem;
+  color: white;
+}
+
+.heading span
+{
+  background: green;
+  color: white;
+  display: inline-block;
+  padding: .5rem 3rem;
+  clip-path: polygon(100% 0,93% 50%,100% 99%,0% 100%,7% 50%,0% 0%);
+}
+
+.btn
+{
+  border: .2rem solid black;
+  margin-top: 1rem;
+  display: inline-block;
+  padding: .8rem 3rem;
+  font-size: 1.7rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  color: black;
+}
+
+.btn:hover
+{
+  background: green;
+  color: white;
+}
+
+header {
+  border: 2px solid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: url('https://i1.wp.com/binaryoptionszone.net/wp-content/uploads/2017/08/1.png');
+  box-shadow: var(--box-shadow);
+  z-index: 99;
+}
+
+.header .logo
+{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color:white;
+}
+.header .logo i
+{
+  color: lightblue;
+  padding: 0 1rem;
+}
+header a
+{
+  font-size: 1.6rem;
+  margin: 0 1rem;
+  color: white;
+}
+.header .navbar a:hover
+{
+  color: green;
+}
+
+.header .icons div
+{
+  border: 0px solid;
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  border-radius: .5rem;
+  background: #eee;
+  color: black;
+  font-size: 2rem;
+  margin-right: .3rem;
+  text-align: center;
+  cursor: pointer;
+}
+
+.header .icons div:hover
+{
+  background: green;
+  color: white;
+}
+#menu-btn
+{
+  display: none;
+}
+
+.header .navbar.active
+{
+  right: 2rem;
+  transition: .4s linear;
+}
+
+.home
+{
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  background: url(https://www.moneypatrol.com/moneytalk/wp-content/uploads/2022/04/Passive-Income-and-Stock-Market-Investments.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  padding-top: 17rem;
+  padding-bottom: 13rem;
+}
+.home .content
+{
+  border: 0px solid;
+  text-align: center;
+  width: 60rem;
+
+}
+.home .content h3
+{
+  color: lightblue;
+  font-size: 3rem;
+}
+.home .content p
+{
+  color: white;
+  font-size: 1.7rem;
+  padding: 1rem 0;
+  line-height: 1.8;
+}
+.hp
+{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+form {
+    background-color: lightblue;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+form button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+.hp .active 
+{
+  display:none;
+}
+
+.textbox {
+  width: 500px;
+  height: 110px;
+  position: relative;
+  transform-style: preserve-3d;
+  -webkit-animation: turnaround 20s infinite;
+          animation: turnaround 20s infinite;
+}
+.textbox-box {
+  background-color: #e3f6f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 0 3px #272343;
+  position: relative;
+  -webkit-animation: hover 2s alternate infinite;
+          animation: hover 2s alternate infinite;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 0.2s ease;
+}
+.textbox-field {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 15px 15px;
+  align-self: stretch;
+  border-radius: 5px;
+}
+.textbox-label {
+  transform: translateZ(20px);
+  text-transform: uppercase;
+  font-weight: bold;
+  -webkit-animation: hover 2s -0.2s alternate infinite;
+          animation: hover 2s -0.2s alternate infinite;
+  color: #272343;
+  -webkit-filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+.textbox-action {
+  height: 80px;
+  width: 80px;
+  min-width: 80px;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -border-radius: 100px;
+  transform-style: preserve-3d;
+  -webkit-animation: hover 2s -0.4s alternate infinite;
+          animation: hover 2s -0.4s alternate infinite;
+  background-color: #bae8e8;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.textbox-action svg {
+  fill: #272343;
+  width: 65%;
+  height: 65%;
+  -webkit-animation: hover 2s -0.6s alternate infinite;
+          animation: hover 2s -0.6s alternate infinite;
+  -webkit-filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+.textbox-action .textbox-face {
+  background-color: #66a8a8;
+  transition: all 0.2s ease;
+}
+.textbox-action .textbox-side {
+  width: 10px;
+}
+.textbox-action .textbox-bottom,
+.textbox-action .textbox-top {
+  height: 10px;
+}
+.textbox-action:hover {
+  cursor: pointer;
+  background-color: #9ccece;
+}
+.textbox-action:hover .textbox-face {
+  background-color: #468282;
+}
+.textbox-text {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: transparent;
+  font: 2.5rem sans-serif;
+  -webkit-animation: hover 2s -0.4s alternate infinite;
+          animation: hover 2s -0.4s alternate infinite;
+  display: block;
+  color: #272343;
+  -webkit-filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+}
+.textbox-text::-moz-placeholder {
+  color: #272343;
+  opacity: 0.5;
+}
+.textbox-text:-ms-input-placeholder {
+  color: #272343;
+  opacity: 0.5;
+}
+.textbox-text::placeholder {
+  color: #272343;
+  opacity: 0.5;
+}
+.textbox-text:focus {
+  outline: none;
+}
+.textbox-face {
+  position: absolute;
+  background-color: #272343;
+  left: 0;
+}
+.textbox-side {
+  transform: rotateY(90deg);
+  height: 100%;
+  width: 20px;
+  top: 0;
+  transform-origin: 0% 50%;
+}
+.textbox-bottom {
+  transform: rotateX(90deg);
+  height: 20px;
+  width: 100%;
+  bottom: 0;
+  transform-origin: 50% 100%;
+}
+.textbox-top {
+  transform: rotateX(-90deg);
+  height: 20px;
+  width: 100%;
+  top: 0;
+  transform-origin: 50% 0;
+}
+
+@-webkit-keyframes hover {
+  from {
+    transform: translateZ(10px);
+  }
+  to {
+    transform: translateZ(20px);
+  }
+}
+
+@keyframes hover {
+  from {
+    transform: translateZ(10px);
+  }
+  to {
+    transform: translateZ(20px);
+  }
+}
+@-webkit-keyframes turnaround {
+  0% {
+    transform: perspective(500px) rotateY(70deg) rotateZ(-10deg) rotateX(30deg);
+  }
+  33% {
+    transform: perspective(500px) rotateY(20deg) rotateZ(-10deg) rotateX(-30deg);
+  }
+  67% {
+    transform: perspective(500) rotateY(0deg) rotateZ(0deg) rotateX(0deg);
+  }
+  100% {
+    transform: perspective(500px) rotateY(70deg) rotateZ(-10deg) rotateX(30deg);
+  }
+}
+@keyframes turnaround {
+  0% {
+    transform: perspective(500px) rotateY(70deg) rotateZ(-10deg) rotateX(30deg);
+  }
+  33% {
+    transform: perspective(500px) rotateY(20deg) rotateZ(-10deg) rotateX(-30deg);
+  }
+  67% {
+    transform: perspective(500) rotateY(0deg) rotateZ(0deg) rotateX(0deg);
+  }
+  100% {
+    transform: perspective(500px) rotateY(70deg) rotateZ(-10deg) rotateX(30deg);
+  }
+}
+.reference {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+}
+.reference img {
+  width: 35px;
+  height: 35px;
+}
+.form-field {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  line-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 6px;
+  -webkit-appearance: none;
+  color: var(--input-color);
+  border: 1px solid var(--input-border);
+  background: var(--input-background);
+  transition: border 0.3s ease;
+}
+.form-field::-moz-placeholder {
+  color: var(--input-placeholder);
+}
+.form-field:-ms-input-placeholder {
+  color: var(--input-placeholder);
+}
+.form-field::placeholder {
+  color: var(--input-placeholder);
+}
+.form-field:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  width: 100%;
+  padding-bottom:20px;
+}
+.form-group > span,
+.form-group .form-field {
+  white-space: nowrap;
+  display: block;
+}
+.form-group > span:not(:first-child):not(:last-child),
+.form-group .form-field:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+.form-group > span:first-child,
+.form-group .form-field:first-child {
+  border-radius: 6px 0 0 6px;
+}
+.form-group > span:last-child,
+.form-group .form-field:last-child {
+  border-radius: 0 6px 6px 0;
+}
+.form-group > span:not(:first-child),
+.form-group .form-field:not(:first-child) {
+  margin-left: -1px;
+}
+.form-group .form-field {
+  position: relative;
+  z-index: 1;
+  flex: 1 1 auto;
+  width: 1%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.form-group > span {
+  text-align: center;
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 25px;
+  color: var(--group-color);
+  background: var(--group-background);
+  border: 1px solid var(--group-border);
+  transition: background 0.3s ease, border 0.3s ease, color 0.3s ease;
+}
+.form-group:focus-within > span {
+  color: var(--group-color-focus);
+  background: var(--group-background-focus);
+  border-color: var(--group-border-focus);
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
+    </style>
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/Page3.jsx"></script>
+    <header>
+      <a href="#" class="logo">
+        <i class="fa fa-pie-chart"></i>Market sentiment contrast analysis
+      </a>
+      <nav class="navbar">
+        <a href="#home"> Home </a>
+        <a href="http://127.0.0.1:5000"> Return </a>
+      </nav>
+    </header>
+    <section class="home" id="home">
+      <div class="content">
+        <h3>Market sentiment contrast analysis</h3>
+        <p>Get Reviews about any products within a span of seconds</p>
+      </div>
+    </section>
+    <section class="hp">
+      <form id="productForm">
+        <!-- Input fields for Product 1 -->
+        <div class="form-group">
+          <span for="productName1">Entity Name 1</span>
+          <input class="form-field" type="text" id="productName1" name="productName1" placeholder="Enter Name Of Individual/Organisation">
+        </div>
+          <!--<span>Id</span>
+          <input class="form-field" type="text" placeholder="enter product id 1">
+        </div>
+        <div class="form-group">
+          <span>Type</span>
+          <input class="form-field" type="email" placeholder="enter product type 1">
+        </div>-->
+
+        <!-- Input fields for Product 2 -->
+        <div class="form-group">
+          <span for="productName2">Entity Name 2</span>
+          <input class="form-field" type="text" id="productName2" name="productName2" placeholder="Enter Name Of Individual/Organisation">
+        </div>
+        <!--<div class="form-group">
+          <span>Id</span>
+          <input class="form-field" type="text" placeholder="enter product id 2">
+        </div>
+        <div class="form-group">
+          <span>Type</span>
+          <input class="form-field" type="email" placeholder="enter product type 2">
+        </div>-->
+
+        <button type="button" onclick="generateProducts()">Generate</button>
+      </form>
+    </section>
+
+    <section class="hp">
+      <!-- Output area for Product 1 -->
+      <div class="textbox active" id="textbox1">
+        <div class="textbox-box">
+          <div class="textbox-face textbox-side"></div>
+          <div class="textbox-face textbox-bottom"></div>
+          <div class="textbox-face textbox-top"></div>
+          <div class="textbox-field">
+            <div class="textbox-label">Please wait for some time</div>
+            <input class="textbox-text" type="text" placeholder="Generating..." />
+          </div>
+          <div class="textbox-action">
+            <div class="textbox-face textbox-side"></div>
+            <div class="textbox-face textbox-top"></div>
+            <div class="textbox-face textbox-bottom"></div>
+            <svg viewBox="0 0 24 24">
+              <path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z"></path>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hp">
+      <!-- Chart container for Product 1 -->
+      <div class="chart-container" id="chartdiv1" style="width: 100%; height: 500px;"></div>
+    </section>
+
+    <section class="hp">
+      <!-- Chart container for Product 2 -->
+      <div class="chart-container" id="chartdiv2" style="width: 100%; height: 500px;"></div>
+    </section>
+
+    <script>
+      let startAngle = 0;
+
+      function generateProducts() {
+    // Toggle the "active" class for Product 1
+    document.getElementById('textbox1').classList.toggle('active');
+
+    // You can add your logic for generating the products here
+    var productName1 = document.getElementById("productName1").value;
+    var productName2 = document.getElementById("productName2").value;
+
+    // Replace this with the actual API endpoint for sentiment analysis
+    var apiEndpoint = '/predict_sentiment_contrast';
+
+    // Simulate sentiment analysis data for Product 1
+    fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            productName1: productName1,
+            productName2: productName2,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Data for Product 1:', data);
+            if (data && data.product1 && data.product1.sentiment_probabilities) {
+                displayCurvedChart(data.product1.sentiment_probabilities, "chartdiv1", startAngle);
+            } else {
+                console.error('Invalid data format for Product 1:', data);
+                document.getElementById('textbox1').classList.remove('active');
+                alert("Error generating sentiment analysis for Product 1. Please try again.");
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching data for Product 1:', error);
+            document.getElementById('textbox1').classList.remove('active');
+            alert("Error generating sentiment analysis for Product 1. Please try again.");
+        });
+
+    // Simulate sentiment analysis data for Product 2
+    fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            productName1: productName2,
+            productName2: productName2,
+        }),
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Data for Product 2:', data);
+            if (data && data.product2 && data.product2.sentiment_probabilities) {
+                displayCurvedChart(data.product2.sentiment_probabilities, "chartdiv2", startAngle);
+            } else {
+                console.error('Invalid data format for Product 2:', data);
+                document.getElementById('textbox2').classList.remove('active');
+                alert("Error generating sentiment analysis for Product 2. Please try again.");
+            }
+        })
+        .catch((error) => {
+            console.error('Error fetching data for Product 2:', error);
+            document.getElementById('textbox2').classList.remove('active');
+            alert("Error generating sentiment analysis for Product 2. Please try again.");
+        });    
+}
+
+
+async function displayCurvedChart(probabilities, containerId, startAngle) {
+  await new Promise(resolve => setTimeout(resolve, 2000));
+    if (!probabilities || !Array.isArray(probabilities)) {
+        console.error('Invalid data format:', probabilities);
+        document.getElementById(containerId).innerHTML = "Error: Invalid data format";
+        return;
+    }
+
+    am4core.ready(function () {
+        // Create chart instance
+        var chart = am4core.create(containerId, am4charts.XYChart3D);
+        chart.width = am4core.percent(50);
+        chart.height = am4core.percent(100);
+        chart.angle = startAngle;
+
+        // Add data
+        chart.data = probabilities.map((prob, index) => ({
+            label: `Sentiment ${index + 1}`,
+            value: prob * 100, // Multiply by 100 to convert to percentage
+        }));
+
+          // Create axes
+          var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+          categoryAxis.dataFields.category = "label";
+          categoryAxis.renderer.labels.template.rotation = 270;
+          categoryAxis.renderer.labels.template.hideOversized = false;
+          categoryAxis.renderer.minGridDistance = 20;
+          categoryAxis.renderer.labels.template.horizontalCenter = "right";
+          categoryAxis.renderer.labels.template.verticalCenter = "middle";
+          categoryAxis.tooltip.label.rotation = 270;
+          categoryAxis.tooltip.label.horizontalCenter = "left";
+          categoryAxis.tooltip.label.verticalCenter = "middle";
+
+          let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
+          valueAxis.title.text = "Entity 1";
+          valueAxis.title.fontWeight = "bold";
+
+          // Create series
+          var series = chart.series.push(new am4charts.ColumnSeries3D());
+          series.dataFields.valueY = "value";
+          series.dataFields.categoryX = "label";
+          series.name = "Entity 2";
+          series.tooltipText = "{categoryX}: [bold]{valueY}[/]";
+          series.columns.template.fillOpacity = 0.8;
+
+          var columnTemplate = series.columns.template;
+          columnTemplate.strokeWidth = 2;
+          columnTemplate.strokeOpacity = 1;
+          columnTemplate.stroke = am4core.color("#FFFFFF");
+
+          columnTemplate.adapter.add("fill", function (fill, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+          });
+
+          columnTemplate.adapter.add("stroke", function (stroke, target) {
+            return chart.colors.getIndex(target.dataItem.index);
+          });
+
+          chart.cursor = new am4charts.XYCursor();
+          chart.cursor.lineX.strokeOpacity = 0;
+          chart.cursor.lineY.strokeOpacity = 0;
+        });
+        document.getElementById('textbox1').classList.add('active');
+      }
+    </script>
+  </body>
+</html>
