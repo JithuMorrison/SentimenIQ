@@ -1,4 +1,3 @@
-# & C:/Python312/python.exe "c:/Users/jithu/OneDrive - SSN-Institute/College/SIH/SIH-web-1.0.2/SIH-web-1.0.2/sih2023int/sih2023int/app.py"
 from flask import Flask, render_template, request, jsonify
 from transformers import BertForSequenceClassification, BertTokenizer
 import torch, requests
@@ -13,20 +12,16 @@ import wave
 
 app = Flask(__name__)
 
-# Load the tokenizer
 tokenizer = BertTokenizer.from_pretrained(r'C:\Users\jithu\OneDrive - SSN-Institute\College\SIH\SIH-web-1.0.2\SIH-web-1.0.2\sih2023int\sih2023int\model - 2\bert_tokenizer')
 
-# Load the model architecture
 model = BertForSequenceClassification.from_pretrained('bert-base-uncased', num_labels=3)
 
-# Load the trained weights
 model.load_state_dict(torch.load(r'C:\Users\jithu\OneDrive - SSN-Institute\College\SIH\SIH-web-1.0.2\SIH-web-1.0.2\sih2023int\sih2023int\model - 2\bert_model.pth'))
 
-# Set the model to evaluation mode
 model.eval()
 
-YOUTUBE_API_KEY = 'AIzaSyBeVwWYdrruAf-003iQb1iP0Lu0XO8-HYg'
-CUSTOM_SEARCH_API_KEY = 'AIzaSyBeVwWYdrruAf-003iQb1iP0Lu0XO8-HYg'
+YOUTUBE_API_KEY = 'API_KEY'
+CUSTOM_SEARCH_API_KEY = 'API_KEY'
 
 def youtube_video_search(api_key, query, num_results=5):
     base_url = "https://www.googleapis.com/youtube/v3/search"
@@ -67,7 +62,7 @@ def get_youtube_comments(api_key, video_links):
                 part='snippet',
                 videoId=video_id,
                 textFormat='plainText',
-                maxResults=100  # Adjust as needed
+                maxResults=100  
             )
             response = request.execute()
 
@@ -78,26 +73,12 @@ def get_youtube_comments(api_key, video_links):
 
     return comments_list
 def youtube_data_collect(query):
-    # Replace 'YOUR_API_KEY' with your actual YouTube API key
     api_key = YOUTUBE_API_KEY
 
-    # Number of results to retrieve (adjust as needed)
     num_results = 5
 
-    # Perform the video search
     video_results = youtube_video_search(api_key, query, num_results)
-    '''
-    if video_results:
-        print(f"Top {num_results} video links about {query}:")
-        for i, link in enumerate(video_results, start=1):
-            print(f"{i}. {link}")
-    else:
-        print("No video results found.")'''
     comments = get_youtube_comments(YOUTUBE_API_KEY, video_results)
-    '''
-    # Print the relevant comments
-    for i, comment in enumerate(comments, start=1):
-        print(f"{i}. {comment}")'''
     return comments
 @app.route('/')
 def index():
@@ -154,22 +135,18 @@ def predict_sentiment():
 @app.route('/predict_sentiment_contrast', methods=['POST'])
 def predict_sentiment_contrast():
     if request.method == 'POST':
-        # Retrieve product names from the form
         product_name_1 = request.json.get('productName1', '')
         product_name_2 = request.json.get('productName2', '')
 
         if product_name_1 and product_name_2:
-            # Predict sentiments for both products
             probabilities_1 = predict_sentiment_helper(product_name_1)
             probabilities_2 = predict_sentiment_helper(product_name_2)
 
-            # Create result dictionary for Product 1
             result_product_1 = {
                 'productName': product_name_1,
                 'sentiment_probabilities': probabilities_1
             }
 
-            # Create result dictionary for Product 2
             result_product_2 = {
                 'productName': product_name_2,
                 'sentiment_probabilities': probabilities_2
@@ -187,17 +164,13 @@ def predict_sentiment_contrast():
 def predict_sentiment_helper(comments):
     predictions = []
     for comment in comments:
-        # Tokenize the comment
         tokens = tokenizer.encode(comment, max_length=128, truncation=True)
 
-        # Convert tokens to PyTorch tensor
-        input_ids = torch.tensor(tokens).unsqueeze(0)  # Add batch dimension
+        input_ids = torch.tensor(tokens).unsqueeze(0) 
 
-        # Make prediction
         with torch.no_grad():
             outputs = model(input_ids)
 
-        # Get predicted sentiment (assuming binary classification)
         prediction = torch.argmax(outputs.logits).item()
         predictions.append(prediction)
     positive = predictions.count(1)
@@ -210,20 +183,18 @@ def voice():
 
     def record_and_save(filename, duration=5, samplerate=44100):
         print("Recording...")
-        # Record audio
+
         audio_data = sd.rec(int(samplerate * duration), samplerate=samplerate, channels=1, dtype=np.int16)
         sd.wait()
 
-        # Save as WAV file
         with wave.open(filename, 'wb') as wf:
             wf.setnchannels(1)
-            wf.setsampwidth(2)  # 16-bit audio
+            wf.setsampwidth(2)
             wf.setframerate(samplerate)
             wf.writeframes(audio_data.tobytes())
 
         print(f"Recording saved as {filename}")
 
-    # Example usage: Record for 10 seconds and save to "output.wav"
     record_and_save("output.wav", duration=10)
 
     def convert_wav_to_text(wav_file_path):
@@ -234,7 +205,6 @@ def voice():
                 recognizer.adjust_for_ambient_noise(source)
                 audio = recognizer.record(source)
 
-                # Use the PocketSphinx recognizer
                 text = recognizer.recognize_sphinx(audio)
                 print("Text from audio: {}".format(text))
                 return "Text from audio: {}".format(text)
@@ -246,10 +216,7 @@ def voice():
         
         return convert_wav_to_text(r"C:\Users\jithu\OneDrive - SSN-Institute\College\SIH\SIH-web-1.0.2\SIH-web-1.0.2\sih2023int\sih2023int\output.wav")
     except Exception as e:
-        # Handle the exception and return an error response
         return jsonify({'error': str(e)}), 500
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
