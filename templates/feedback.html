@@ -108,10 +108,7 @@ header .totalQuantity{
     margin-top: 20px;
     font-weight: bold;
     color: #fff;
-
-
 }
-
 header a
 {
   border: .2rem solid black;
@@ -206,27 +203,8 @@ header a:hover
                             <option value="">600126</option>
                         </select>
                     </div>
-
-                    
                 </div>
-                <!--<div class="return">
-                    <div class="row">
-                        <div>Total Quantity</div>
-                        <div class="totalQuantity">70</div>
-                    </div>
-                  <div class="row">
-                      <div>Delivery Charges</div>
-                      <div class="Delivery">$900</div>
-                  </div>
-                    <div class="row">
-                        <div>Total Price</div>
-                        <div class="totalPrice">$900</div>
-                    </div>
-                </div>-->
-
                 <button class="buttonCheckout" id ="checkout-btn" onclick="test1()">Send feedback</button>
-
-
                 <script>
 var totalPrice =0;
 
@@ -241,154 +219,32 @@ function test1() {
   dt = document.getElementById("city").value;
   pay = document.getElementById("city1").value;
 
-   
-    var sUsername = "Vilfred";// username();
-
-
-
+    var sUsername = "Vilfred";
     try {
-
-        //var fileAbsPath = "file:///C:" + "/" + "Users" + "/" + sUsername + "/" + "Downloads" + "/" + "Ordereditems.xlsx";
         sendEmail(/*fileAbsPath*/);
-
-
     } catch (error) {
         console.error('Error occurred:', error);
         alert('Error occurred:' + error);
 
-    }
-  
-
-         
+    }         
 }
-
-
-
-/*function saveAs(content, fileName, sUsername) {
-
-
-    try {
-        const a = document.createElement("a");
-        const isBlob = content.toString().indexOf("Blob") > -1;
-        let url = content;
-        if (isBlob) {
-            url = window.URL.createObjectURL(content);
-        }
-        alert('Url=' + url);
-        a.href = url;
-        a.download = fileName;    //file is stored in user profile default Download folder
-        
-        //clear the file
-
-        //let fileAbsPath = "C:\\Users\\" + sUsername + "\\Downloads\\" + fileName;
-        //remove(fileAbsPath);
-
-        a.click();
-        if (isBlob) {
-            window.URL.revokeObjectURL(url);
-        }
-
-
-    } catch (error) {
-        console.error('Error occurred:', error);
-        alert('Error occurred:' + error);
-
-    }
-}
-
-function remove(fileAbsPath) {
-    //var myObject;
-    // Create an instance of the FileSystemObject
-    //myObject = CreateObject("Scripting.FileSystemObject");
-
-    var f = window.GetFile(fileAbsPath);
-    f.Delete();
-    //myObject =  nothing;
-}
-function username() {
-    try {
-        var wshshell= Object.create("wscript.shell");
-        var username = wshshell.ExpandEnvironmentStrings("%username%");
-        //var username = $("#userInformation", top.document).text().match(/\((\w*)\)/)[1];
-        return username;
-    } catch (error) {
-        console.error('Error occurred:', error);
-        alert('Error occurred:' + error);
-
-    }
-}
-
-
-function exportToExcel(sUsername) {
-
-
-    let myItems = ''; //+  JSON.stringify(listCart) + "string";
-
-    try {
-
-        if (listCart) {
-            listCart.forEach(product => {
-                if (product) {
-                    myItems = myItems + (product.name) + '   ' + (product.price) + '   ' + (product.quantity) + '   ' + (product.price) * (product.quantity)+ '\n';
-
-                    totalPrice = totalPrice + (product.price) * (product.quantity);
-                }
-            })
-        }
-
-        console.profile('Methods Start');
-        var blob = new Blob([myItems], {
-            type: "application/vnd.ms-excel;charset=utf-8"
-        });
-
-        saveAs(blob, "Ordereditems.xlsx", sUsername);
-        console.profileEnd();
-
-    } catch (error) {
-        console.error('Error occurred:', error);
-        alert('Error occurred:' + error);
-
-    }
-
-
-    }*/
-
-
-
-    
 
 function sendEmail(/*fileAbsPath*/) {
-
-
-        
         Email.send({
-            Host: "smtp.elasticemail.com",
-            Port: '2525',
-            Username: "zestamart@gmail.com",
-            Password: "2486E2A4843538FB146327000CAA1E44D7EA",
-            To: 'jithumorrison2210564@ssn.edu.in',
-            From: 'zestamart@gmail.com',
+            Host: "PROTOCOL",
+            Port: 'PORT',
+            Username: "EMAIL",
+            Password: "PASSWORD",
+            To: 'fromemail',
+            From: 'toemail',
             Subject: 'Ordered items',
-            Body:"customer name: "+uid +"\nemail: "+em+"\nphone number: "+pw+"      \naddress: "+add+"     \nRating: "+dt+"      \nfeedback: "+pay/* ,
-            Attachments: [{
-                name: "Ordereditems.xlsx",
-                path: fileAbsPath
-            }]*/
+            Body:"customer name: "+uid +"\nemail: "+em+"\nphone number: "+pw+"      \naddress: "+add+"     \nRating: "+dt+"      \nfeedback: "+pay
         }).then(function (message) {
             alert("Feedback sent successfully")
           alert("Thank you for your feedback")
         });
-
-
     }
-  
-
-
-   
                 </script>
-
-                
-
             </div>
           </div>
           <div class="Thankyou" id="Thankyou">
