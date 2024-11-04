@@ -5,7 +5,6 @@
     <title>BERT Sentiment Analysis Result</title>
 </head>
 <body>
-    <!-- Add an id to the result display element -->
     <div id="result"></div>
 
     <style>
@@ -20,10 +19,8 @@
             var element = document.getElementById('textbox');
             element.classList.toggle('active');
 
-            // Get the product name from the form
             var productName = document.getElementById("productName").value;
 
-            // Send a POST request to the server
             fetch('/predict', {
                 method: 'POST',
                 headers: {
@@ -35,7 +32,6 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Display the results
                 var resultElement = document.getElementById('result');
                 resultElement.innerHTML = `
                     <p>Predicted Sentiment: ${data.predicted_label}</p>
